@@ -1,8 +1,9 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class Noeud<T> implements Arbre<T> {
+public class Noeud<T extends Sommable<T>> implements Arbre<T> {
 
     private final List<Arbre> fils;
 
@@ -39,13 +40,14 @@ public class Noeud<T> implements Arbre<T> {
 
     @Override
     public T somme() {
-        if (fils == null || fils.size() == 0)
-            return null;
-        int rtr = 0;
-        for (Arbre a : fils) {
-            rtr += a.somme();
+        Iterator<Arbre> elem = fils.iterator();
+        T t1 = (T) elem.next().somme();
+        T next;
+        while (elem.hasNext()) {
+            next = (T) elem.next().somme();
+            t1 = t1.sommer(next);
         }
-        return rtr;
+        return t1;
     }
 
     @Override
