@@ -60,20 +60,20 @@ public class Noeud<T extends Sommable<T> & Comparable<T>> implements Arbre<T> {
                 t = var;
             }
         }
-        return x;
+        return t;
     }
 
     @Override
     public T max() {
         T t = (T) fils.get(0).max();
-        for(Arbre <T> maximum : fils){
+        for (Arbre<T> maximum : fils) {
             T var = maximum.max();
-            if(t.compareTo(maximum.max()) < 0)
-            {
+            if (t.compareTo(maximum.max()) < 0) {
                 t = var;
             }
         }
-        return x;
+        return t;
+    }
 
    @Override
     public boolean estTrie() {
@@ -93,9 +93,8 @@ public class Noeud<T extends Sommable<T> & Comparable<T>> implements Arbre<T> {
     private boolean conditionTrie2() {
         boolean rtr = true;
         for (int i = 0; i < fils.size() - 1; i++) {
-            final Arbre fi = fils.get(i);
-            final Arbre fj = fils.get(i + 1);
-            if (fi.max() > fj.min())
+            Arbre<T> fi = fils.get(i);
+            if (!fi.estTrie())
                 return false;
         }
         return rtr;
