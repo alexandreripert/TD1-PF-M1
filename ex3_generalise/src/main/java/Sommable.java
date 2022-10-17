@@ -1,2 +1,4 @@
-public interface Sommable {
+public interface Sommable<T> {
+
+    T sommer (T elem);
 }
