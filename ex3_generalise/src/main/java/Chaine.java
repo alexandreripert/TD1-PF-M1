@@ -9,8 +9,8 @@ public class Chaine<T> implements Sommable<Chaine> {
     }
 
     @Override
-    public Chaine sommer(Chaine v) {
-        return new Chaine(this.val + v.getVal());
+    public Chaine sommer(Chaine c) {
+        return new Chaine(this.val + c.getVal());
     }
 
     public String getVal() {

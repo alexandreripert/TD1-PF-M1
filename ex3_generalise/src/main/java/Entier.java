@@ -8,8 +8,8 @@ public class Entier<T> implements Sommable<Entier>{
     }
 
     @Override
-    public Entier sommer(Entier v) {
-        return new Entier(this.val + v.getVal());
+    public Entier sommer(Entier t) {
+        return new Entier(this.val + t.getVal());
     }
 
     public Integer getVal() {
