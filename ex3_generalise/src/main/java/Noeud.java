@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class Noeud<T extends Sommable<T>> implements Arbre<T> {
+public class Noeud<T extends Sommable<T> & Comparable<T>> implements Arbre<T> {
 
     private final List<Arbre> fils;
 
@@ -52,39 +52,29 @@ public class Noeud<T extends Sommable<T>> implements Arbre<T> {
 
     @Override
     public T min() {
-        if (fils == null || fils.size() == 0)
-            return null;
-        int rtr = fils.get(0).min();
-        for (int i = 1; i < fils.size(); i++) {
-            int min = fils.get(i).min();
-            if (min < rtr) {
-                rtr = min;
+        T t = (T) fils.get(0).min();
+        for(Arbre <T> minimum : fils){
+            T var = minimum.min();
+            if(t.compareTo(minimum.min()) >0)
+            {
+                t = var;
             }
         }
-        return rtr;
+        return x;
     }
 
     @Override
     public T max() {
-        if (fils == null || fils.size() == 0)
-            return null;
-        T rtr = (T) fils.get(0).max();
-        for (int i = 1; i < fils.size(); i++) {
-            T max = (T) fils.get(i).max();
-            if (max > rtr) {
-                rtr = max;
+        T t = (T) fils.get(0).max();
+        for(Arbre <T> maximum : fils){
+            T var = maximum.max();
+            if(t.compareTo(maximum.max()) < 0)
+            {
+                t = var;
             }
         }
-        return rtr;
-    }
+        return x;
 
-    /**
-     * un noeud de fils f1 ... fi ... fn est trié ssi
-     * <ol>
-     * <li>&forall; i &in; 1..n, fi est trié</li>
-     * <li>&forall; i &in; 1..n-1, max(fi)<= min(fi+1)</li>
-     * </ol>
-     */
    @Override
     public boolean estTrie() {
         return conditionTrie1() && conditionTrie2();
