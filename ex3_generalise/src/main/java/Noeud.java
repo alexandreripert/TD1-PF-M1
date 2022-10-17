@@ -100,4 +100,3 @@ public class Noeud<T extends Sommable<T> & Comparable<T>> implements Arbre<T> {
         return rtr;
     }
 }
-
