@@ -40,12 +40,7 @@ public class Noeud<T> implements Arbre<T> {
     @Override
     public T somme() {
         if (fils == null || fils.size() == 0)
-            return null; // should it be 0 ? no because nothing to sum
-        // alternative without 0 initialization
-        // int rtr = fils.get(0).somme();
-        // for (int i = 1; i<fils.size(); i++) {
-        //     rtr += fils.get(i).somme();
-        // }
+            return null;
         int rtr = 0;
         for (Arbre a : fils) {
             rtr += a.somme();
@@ -71,9 +66,9 @@ public class Noeud<T> implements Arbre<T> {
     public T max() {
         if (fils == null || fils.size() == 0)
             return null;
-        int rtr = fils.get(0).max();
+        T rtr = (T) fils.get(0).max();
         for (int i = 1; i < fils.size(); i++) {
-            int max = fils.get(i).max();
+            T max = (T) fils.get(i).max();
             if (max > rtr) {
                 rtr = max;
             }
@@ -88,7 +83,7 @@ public class Noeud<T> implements Arbre<T> {
      * <li>&forall; i &in; 1..n-1, max(fi)<= min(fi+1)</li>
      * </ol>
      */
-    @Override
+   @Override
     public boolean estTrie() {
         return conditionTrie1() && conditionTrie2();
     }
@@ -115,4 +110,3 @@ public class Noeud<T> implements Arbre<T> {
     }
 }
 
-//test commit
