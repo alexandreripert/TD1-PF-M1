@@ -1,0 +1,4 @@
+rootProject.name = 'TD1_ex2'
+include 'ex3'
+include 'ex3_generalise'
+
